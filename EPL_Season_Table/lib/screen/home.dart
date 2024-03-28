@@ -90,6 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 12,
+          ),
           Expanded(
             child: ListView.separated(
                 separatorBuilder: (context, index) {
@@ -97,8 +100,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 12,
                   );
                 },
-                itemCount: teams.length,
+                itemCount: teams.length + 1,
                 itemBuilder: (context, index) {
+                  if (index == teams.length) {
+                    return Column(
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              height: 25,
+                              width: 25,
+                              color: Colors.blue,
+                            )
+                          ],
+                        )
+                      ],
+                    );
+                  }
                   final eplTeams = teams[index];
                   final String team = eplTeams['name'];
                   final games = eplTeams['all-matches']['played'].toString();
@@ -112,7 +130,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 12,
                       ),
                       CircleAvatar(
-                        child: Text('${index + 1}'),
+                        backgroundColor: (index + 1) < 5
+                            ? Colors.blue
+                            : (index + 1) == 5
+                                ? Colors.orange
+                                : (index + 1) == 6
+                                    ? Color.fromARGB(223, 224, 217, 1)
+                                    : (index + 1 > 17)
+                                        ? const Color.fromARGB(255, 254, 17, 0)
+                                        : const Color.fromARGB(
+                                            255, 244, 210, 251),
+                        child: Text(
+                          '${index + 1}.',
+                          style: TextStyle(
+                            color: (index) < 6 || (index) > 16
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ),
                       ),
                       const SizedBox(
                         width: 12,
@@ -127,6 +162,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .cover, // Choose the appropriate fit option
                           ),
                         ),
+                      ),
+                      const SizedBox(
+                        width: 12,
                       ),
                       Expanded(
                           child: Text(
