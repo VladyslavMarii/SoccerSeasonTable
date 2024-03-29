@@ -1,4 +1,4 @@
-import 'package:epl_season_table/screen/home.dart';
+import 'package:epl_season_table/screen/epl_table.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeScreen(),
+      home: HomeEplTableScreen(),
     );
   }
 }
