@@ -3,9 +3,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'info/all_info_tab.dart';
-import 'info/away_info_tab.dart';
-import 'info/home_info.dart';
+import '../info/all_info_tab.dart';
+import '../info/away_info_tab.dart';
+import '../info/home_info.dart';
 
 class TeamInfoScreen extends StatefulWidget {
   final Map<String, dynamic> eplTeam;
@@ -220,9 +220,9 @@ class _TeamInfoScreenState extends State<TeamInfoScreen>
           child: TabBarView(
             controller: _tabController,
             children: [
-              HomeInfoContent(eplTeam: _eplTeam),
-              AwayInfoContent(eplTeam: _eplTeam),
-              AllInfoContent(eplTeam: _eplTeam),
+              HomeInfoContent(someTeam: _eplTeam),
+              AwayInfoContent(someTeam: _eplTeam),
+              AllInfoContent(someTeam: _eplTeam),
             ],
           ),
         ),

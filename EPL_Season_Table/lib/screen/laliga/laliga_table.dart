@@ -24,8 +24,11 @@ class _HomeLaLigaTableScreenState extends State<HomeLaLigaTableScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LaLiga'),
-        leading: Image.asset('assets/epl.png'),
+        title: const Text('La Liga'),
+        leading: Padding(
+          padding: const EdgeInsets.all(9.0), // Adjust the padding as needed
+          child: Image.asset('assets/laliga/laliga-logo.png'),
+        ),
       ),
       body: Column(
         children: [
@@ -157,6 +160,27 @@ class _HomeLaLigaTableScreenState extends State<HomeLaLigaTableScreen> {
                               height: 15,
                               width: 15,
                               decoration: BoxDecoration(
+                                color: Color.fromARGB(217, 172, 172, 8),
+                                borderRadius: BorderRadius.circular(4.0),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            const Text(
+                                "Вихід - Ліга Конференцій (Кваліфікація: )")
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const SizedBox(
+                              width: 22,
+                              height: 32,
+                            ),
+                            Container(
+                              height: 15,
+                              width: 15,
+                              decoration: BoxDecoration(
                                 color: const Color.fromARGB(255, 254, 17, 0),
                                 borderRadius: BorderRadius.circular(4.0),
                               ),
@@ -218,14 +242,17 @@ class _HomeLaLigaTableScreenState extends State<HomeLaLigaTableScreen> {
                               ? Colors.blue
                               : (index + 1) == 5
                                   ? const Color.fromARGB(217, 130, 5, 5)
-                                  : (index + 1 > 17)
-                                      ? const Color.fromARGB(255, 254, 17, 0)
-                                      : const Color.fromARGB(
-                                          255, 244, 210, 251),
+                                  : (index + 1) == 6
+                                      ? Color.fromARGB(217, 172, 172, 8)
+                                      : (index + 1 > 17)
+                                          ? const Color.fromARGB(
+                                              255, 254, 17, 0)
+                                          : const Color.fromARGB(
+                                              255, 244, 210, 251),
                           child: Text(
                             '${index + 1}.',
                             style: TextStyle(
-                              color: (index) < 5 || (index) > 16
+                              color: (index) < 6 || (index) > 16
                                   ? Colors.white
                                   : Colors.black,
                             ),
@@ -239,7 +266,7 @@ class _HomeLaLigaTableScreenState extends State<HomeLaLigaTableScreen> {
                           height: 25,
                           child: Center(
                             child: Image.asset(
-                              'assets/${team.toLowerCase().replaceAll(' ', '_')}.png',
+                              'assets/laliga/${team.toLowerCase().replaceAll(' ', '_')}.png',
                               fit: BoxFit.cover,
                             ),
                           ),

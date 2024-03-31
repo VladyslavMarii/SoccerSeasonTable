@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-class AwayInfoContent extends StatefulWidget {
-  final Map<String, dynamic> eplTeam;
+class AllInfoContent extends StatefulWidget {
+  final Map<String, dynamic> someTeam;
 
-  const AwayInfoContent({Key? key, required this.eplTeam}) : super(key: key);
+  const AllInfoContent({Key? key, required this.someTeam}) : super(key: key);
 
   @override
-  _AwayInfoContentState createState() => _AwayInfoContentState();
+  _AllInfoContentState createState() => _AllInfoContentState();
 }
 
-class _AwayInfoContentState extends State<AwayInfoContent> {
-  late Map<String, dynamic> _eplTeam;
+class _AllInfoContentState extends State<AllInfoContent> {
+  late Map<String, dynamic> _someTeam;
 
   @override
   void initState() {
     super.initState();
-    _eplTeam = widget.eplTeam;
-    // Add your initialization code here if needed
+    _someTeam = widget.someTeam;
+    // Perform any initialization here
   }
 
   @override
@@ -40,7 +40,7 @@ class _AwayInfoContentState extends State<AwayInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['away-matches']['played']}',
+                  '${_someTeam['all-matches']['played']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -54,7 +54,7 @@ class _AwayInfoContentState extends State<AwayInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['away-matches']['won']}',
+                  '${_someTeam['all-matches']['won']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -68,7 +68,7 @@ class _AwayInfoContentState extends State<AwayInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['away-matches']['drawn']}',
+                  '${_someTeam['all-matches']['drawn']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -82,7 +82,7 @@ class _AwayInfoContentState extends State<AwayInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['away-matches']['lost']}',
+                  '${_someTeam['all-matches']['lost']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -96,7 +96,7 @@ class _AwayInfoContentState extends State<AwayInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['away-matches']['for']}',
+                  '${_someTeam['all-matches']['for']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -110,7 +110,21 @@ class _AwayInfoContentState extends State<AwayInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['away-matches']['against']}',
+                  '${_someTeam['all-matches']['against']}',
+                  textAlign: TextAlign.right,
+                  style: const TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Goals Difference',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text(
+                  '${_someTeam['all-matches']['goal-difference']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),

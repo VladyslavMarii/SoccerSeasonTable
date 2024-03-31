@@ -1,5 +1,4 @@
-import 'package:epl_season_table/screen/epl/epl_table.dart';
-// import 'package:epl_season_table/screen/laliga/laliga_table.dart';
+import 'package:epl_season_table/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,8 +10,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeEplTableScreen(),
+    return MaterialApp(
+      home: HomeScreen(),
     );
   }
 }

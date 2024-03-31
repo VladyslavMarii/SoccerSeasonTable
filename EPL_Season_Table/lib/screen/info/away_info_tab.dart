@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class HomeInfoContent extends StatefulWidget {
-  final Map<String, dynamic> eplTeam;
+class AwayInfoContent extends StatefulWidget {
+  final Map<String, dynamic> someTeam;
 
-  const HomeInfoContent({Key? key, required this.eplTeam}) : super(key: key);
+  const AwayInfoContent({Key? key, required this.someTeam}) : super(key: key);
 
   @override
-  _HomeInfoContentState createState() => _HomeInfoContentState();
+  _AwayInfoContentState createState() => _AwayInfoContentState();
 }
 
-class _HomeInfoContentState extends State<HomeInfoContent> {
-  late Map<String, dynamic> _eplTeam;
+class _AwayInfoContentState extends State<AwayInfoContent> {
+  late Map<String, dynamic> _someTeam;
 
   @override
   void initState() {
     super.initState();
-    _eplTeam = widget.eplTeam;
+    _someTeam = widget.someTeam;
     // Add your initialization code here if needed
   }
 
@@ -40,7 +40,7 @@ class _HomeInfoContentState extends State<HomeInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['home-matches']['played']}',
+                  '${_someTeam['away-matches']['played']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -54,7 +54,7 @@ class _HomeInfoContentState extends State<HomeInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['home-matches']['won']}',
+                  '${_someTeam['away-matches']['won']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -68,7 +68,7 @@ class _HomeInfoContentState extends State<HomeInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['home-matches']['drawn']}',
+                  '${_someTeam['away-matches']['drawn']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -82,7 +82,7 @@ class _HomeInfoContentState extends State<HomeInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['home-matches']['lost']}',
+                  '${_someTeam['away-matches']['lost']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -96,7 +96,7 @@ class _HomeInfoContentState extends State<HomeInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['home-matches']['for']}',
+                  '${_someTeam['away-matches']['for']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),
@@ -110,7 +110,7 @@ class _HomeInfoContentState extends State<HomeInfoContent> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  '${_eplTeam['home-matches']['against']}',
+                  '${_someTeam['away-matches']['against']}',
                   textAlign: TextAlign.right,
                   style: const TextStyle(fontSize: 20),
                 ),

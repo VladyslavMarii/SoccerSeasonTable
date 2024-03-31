@@ -1,7 +1,10 @@
-import 'package:epl_season_table/screen/epl/info/all_info_tab.dart';
-import 'package:epl_season_table/screen/epl/info/away_info_tab.dart';
-import 'package:epl_season_table/screen/epl/info/home_info.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../info/all_info_tab.dart';
+import '../info/away_info_tab.dart';
+import '../info/home_info.dart';
 
 class LaLigaTeamInfoScreen extends StatefulWidget {
   final Map<String, dynamic> laligaTeam;
@@ -10,19 +13,22 @@ class LaLigaTeamInfoScreen extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<LaLigaTeamInfoScreen> createState() => _LaLigaTeamInfoScreenState();
+  State<LaLigaTeamInfoScreen> createState() => _LaLigaTeamInfoScreen();
 }
 
-class _LaLigaTeamInfoScreenState extends State<LaLigaTeamInfoScreen>
+class _LaLigaTeamInfoScreen extends State<LaLigaTeamInfoScreen>
     with SingleTickerProviderStateMixin {
   late Map<String, dynamic> _laligaTeam;
   late TabController _tabController;
+  late Map<String, dynamic> teamData = {};
+  late Future<Map<String, dynamic>> _fetchTeamDataFuture;
 
   @override
   void initState() {
     super.initState();
     _laligaTeam = widget.laligaTeam;
     _tabController = TabController(length: 3, vsync: this);
+    _fetchTeamDataFuture = fetchTeamData();
   }
 
   @override
@@ -44,88 +50,209 @@ class _LaLigaTeamInfoScreenState extends State<LaLigaTeamInfoScreen>
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const SizedBox(
-                width: 15,
-              ),
-              SizedBox(
-                width: 35,
-                height: 35,
-                child: Center(
-                  child: Image.asset(
-                    'assets/england_flag.png',
-                  ),
+      body: FutureBuilder(
+        future: _fetchTeamDataFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            return buildTeamInfo();
+          }
+        },
+      ),
+    );
+  }
+
+  Widget buildTeamInfo() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const SizedBox(
+              width: 15,
+            ),
+            SizedBox(
+              width: 35,
+              height: 35,
+              child: Center(
+                child: Image.asset(
+                  'assets/countries/spain_flag.png',
                 ),
               ),
-              const SizedBox(
-                width: 10,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            const Text(
+              'SPAIN',
+              style: TextStyle(fontSize: 14),
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              width: 15,
+            ),
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 213, 227, 239),
+                borderRadius: BorderRadius.circular(8),
               ),
-              const Text(
-                'ENGLAND',
-                style: TextStyle(fontSize: 14),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 15,
-              ),
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 213, 227, 239),
-                  borderRadius: BorderRadius.circular(8),
+              child: Center(
+                child: Image.asset(
+                  'assets/laliga/${_laligaTeam['name'].toLowerCase().replaceAll(' ', '_')}.png',
+                  fit: BoxFit.cover,
                 ),
-                child: Center(
+              ),
+            ),
+            const SizedBox(
+              width: 12,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _laligaTeam["name"],
+                  style: const TextStyle(
+                      fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+              ],
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Divider(
+          color: Colors.grey.shade200, // Set the color of the divider
+          thickness: 1, // Set the thickness of the divider
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Row(
+          children: [
+            const SizedBox(
+              width: 15,
+              height: 10,
+            ),
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 213, 227, 239),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Transform.scale(
+                  scale: 0.8, // Adjust the scale factor as needed
                   child: Image.asset(
-                    'assets/${_laligaTeam['name'].toLowerCase().replaceAll(' ', '_')}.png',
+                    'assets/studium.png',
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 12,
-              ),
-              Text(
-                _laligaTeam["name"],
-                style:
-                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          TabBar(
-            controller: _tabController,
-            tabs: const [
-              Tab(text: 'Home Info'),
-              Tab(text: 'Away Info'),
-              Tab(text: 'All Info'),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
+            ),
+            const SizedBox(
+              width: 15,
+              height: 10,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HomeInfoContent(eplTeam: _laligaTeam),
-                AwayInfoContent(eplTeam: _laligaTeam),
-                AllInfoContent(eplTeam: _laligaTeam),
+                Text(
+                  teamData['ground'],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey.shade700, // Set color to gray
+                  ),
+                ),
+                Text(
+                  'Capacity: ${teamData['capacity']}',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey, // Set color to gray
+                  ),
+                ),
               ],
             ),
+            const SizedBox(
+              height: 15,
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        TabBar(
+          controller: _tabController,
+          tabs: const [
+            Tab(text: 'Home Info'),
+            Tab(text: 'Away Info'),
+            Tab(text: 'All Info'),
+          ],
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              HomeInfoContent(someTeam: _laligaTeam),
+              AwayInfoContent(someTeam: _laligaTeam),
+              AllInfoContent(someTeam: _laligaTeam),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
+  }
+
+  Future<Map<String, dynamic>> fetchTeamData() async {
+    const String apiKey = '552295a42bmsh86a7f41465d14cbp13261cjsn5a354ed50973';
+
+    final Uri url = Uri.https(
+      'football-web-pages1.p.rapidapi.com',
+      '/team.json',
+      {
+        'team': _laligaTeam['id'].toString()
+      }, // Convert team ID to string if it's an integer
+    );
+
+    try {
+      final response = await http.get(
+        url,
+        headers: {
+          'x-rapidapi-key': apiKey,
+          'x-rapidapi-host':
+              'football-web-pages1.p.rapidapi.com', // Change to the actual host name
+        },
+      );
+      final body = response.body;
+      Map<String, dynamic> data = jsonDecode(body);
+      setState(() {
+        teamData = data['team'];
+      });
+      if (response.statusCode == 200) {
+        // Successful response
+        print(response.body);
+      } else {
+        // Handle other status codes
+        print('Request failed with status: ${response.statusCode}');
+      }
+      return data;
+    } catch (e) {
+      // Handle exceptions
+      print('Exception: $e');
+      throw e;
+    }
   }
 }
