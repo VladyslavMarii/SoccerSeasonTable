@@ -1,17 +1,16 @@
 import 'dart:convert';
-
-import 'package:epl_season_table/screen/team_info_tab.dart';
+import 'package:epl_season_table/screen/laliga/laliga_team_info_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class HomeEplTableScreen extends StatefulWidget {
-  const HomeEplTableScreen({super.key});
+class HomeLaLigaTableScreen extends StatefulWidget {
+  const HomeLaLigaTableScreen({super.key});
 
   @override
-  State<HomeEplTableScreen> createState() => _HomeEplTableScreenState();
+  State<HomeLaLigaTableScreen> createState() => _HomeLaLigaTableScreenState();
 }
 
-class _HomeEplTableScreenState extends State<HomeEplTableScreen> {
+class _HomeLaLigaTableScreenState extends State<HomeLaLigaTableScreen> {
   List teams = [];
   @override
   void initState() {
@@ -25,7 +24,7 @@ class _HomeEplTableScreenState extends State<HomeEplTableScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('EPL TABLE'),
+        title: const Text('LaLiga'),
         leading: Image.asset('assets/epl.png'),
       ),
       body: Column(
@@ -193,20 +192,20 @@ class _HomeEplTableScreenState extends State<HomeEplTableScreen> {
                       ],
                     );
                   }
-                  final eplTeams = teams[index];
-                  final String team = eplTeams['name'];
-                  final games = eplTeams['all-matches']['played'].toString();
-                  final lost = eplTeams['all-matches']['lost'].toString();
-                  final won = eplTeams['all-matches']['won'].toString();
-                  final drawn = eplTeams['all-matches']['drawn'].toString();
-                  final points = eplTeams['total-points'].toString();
+                  final laligaTeams = teams[index];
+                  final String team = laligaTeams['name'];
+                  final games = laligaTeams['all-matches']['played'].toString();
+                  final lost = laligaTeams['all-matches']['lost'].toString();
+                  final won = laligaTeams['all-matches']['won'].toString();
+                  final drawn = laligaTeams['all-matches']['drawn'].toString();
+                  final points = laligaTeams['total-points'].toString();
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                TeamInfoScreen(eplTeam: eplTeams)),
+                                LaLigaTeamInfoScreen(laligaTeam: laligaTeams)),
                       );
                     },
                     child: Row(
@@ -292,7 +291,7 @@ class _HomeEplTableScreenState extends State<HomeEplTableScreen> {
     const String apiKey = '552295a42bmsh86a7f41465d14cbp13261cjsn5a354ed50973';
 
     final Uri url = Uri.https('football-web-pages1.p.rapidapi.com',
-        '/league-table.json', {'comp': '1'});
+        '/league-table.json', {'comp': '94'});
 
     try {
       final response = await http.get(

@@ -1,4 +1,5 @@
-import 'package:epl_season_table/screen/epl_table.dart';
+import 'package:epl_season_table/screen/epl/epl_table.dart';
+// import 'package:epl_season_table/screen/laliga/laliga_table.dart';
 import 'package:flutter/material.dart';
 
 void main() {

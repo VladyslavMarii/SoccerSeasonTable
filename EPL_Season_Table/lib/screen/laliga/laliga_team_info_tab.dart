@@ -1,27 +1,27 @@
+import 'package:epl_season_table/screen/epl/info/all_info_tab.dart';
+import 'package:epl_season_table/screen/epl/info/away_info_tab.dart';
+import 'package:epl_season_table/screen/epl/info/home_info.dart';
 import 'package:flutter/material.dart';
 
-import 'info/all_info_tab.dart';
-import 'info/away_info_tab.dart';
-import 'info/home_info.dart';
+class LaLigaTeamInfoScreen extends StatefulWidget {
+  final Map<String, dynamic> laligaTeam;
 
-class TeamInfoScreen extends StatefulWidget {
-  final Map<String, dynamic> eplTeam;
-
-  const TeamInfoScreen({Key? key, required this.eplTeam}) : super(key: key);
+  const LaLigaTeamInfoScreen({Key? key, required this.laligaTeam})
+      : super(key: key);
 
   @override
-  State<TeamInfoScreen> createState() => _TeamInfoScreenState();
+  State<LaLigaTeamInfoScreen> createState() => _LaLigaTeamInfoScreenState();
 }
 
-class _TeamInfoScreenState extends State<TeamInfoScreen>
+class _LaLigaTeamInfoScreenState extends State<LaLigaTeamInfoScreen>
     with SingleTickerProviderStateMixin {
-  late Map<String, dynamic> _eplTeam;
+  late Map<String, dynamic> _laligaTeam;
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _eplTeam = widget.eplTeam;
+    _laligaTeam = widget.laligaTeam;
     _tabController = TabController(length: 3, vsync: this);
   }
 
@@ -35,15 +35,10 @@ class _TeamInfoScreenState extends State<TeamInfoScreen>
             children: [
               Flexible(
                 child: Text(
-                  _eplTeam['name'],
+                  _laligaTeam['name'],
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-              ),
-              const Text(
-                ' Home Info',
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
               ),
             ],
           ),
@@ -93,7 +88,7 @@ class _TeamInfoScreenState extends State<TeamInfoScreen>
                 ),
                 child: Center(
                   child: Image.asset(
-                    'assets/${_eplTeam['name'].toLowerCase().replaceAll(' ', '_')}.png',
+                    'assets/${_laligaTeam['name'].toLowerCase().replaceAll(' ', '_')}.png',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -102,7 +97,7 @@ class _TeamInfoScreenState extends State<TeamInfoScreen>
                 width: 12,
               ),
               Text(
-                _eplTeam["name"],
+                _laligaTeam["name"],
                 style:
                     const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
@@ -123,9 +118,9 @@ class _TeamInfoScreenState extends State<TeamInfoScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                HomeInfoContent(eplTeam: _eplTeam),
-                AwayInfoContent(eplTeam: _eplTeam),
-                AllInfoContent(eplTeam: _eplTeam),
+                HomeInfoContent(eplTeam: _laligaTeam),
+                AwayInfoContent(eplTeam: _laligaTeam),
+                AllInfoContent(eplTeam: _laligaTeam),
               ],
             ),
           ),

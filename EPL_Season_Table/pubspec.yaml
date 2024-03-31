@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http: ^1.2.1
+  url_launcher: ^6.0.6 
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +61,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/epl/
+    - assets/countries/
+    - assets/laliga/
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
