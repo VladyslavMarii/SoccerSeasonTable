@@ -23,13 +23,6 @@ class _HomeLaLigaTableScreenState extends State<HomeLaLigaTableScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('La Liga'),
-        leading: Padding(
-          padding: const EdgeInsets.all(9.0), // Adjust the padding as needed
-          child: Image.asset('assets/laliga/laliga-logo.png'),
-        ),
-      ),
       body: Column(
         children: [
           const SizedBox(

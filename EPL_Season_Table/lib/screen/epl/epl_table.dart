@@ -24,13 +24,6 @@ class _HomeEplTableScreenState extends State<HomeEplTableScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Premier League'),
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0), // Adjust the padding as needed
-          child: Image.asset('assets/epl/epl.png'),
-        ),
-      ),
       body: Column(
         children: [
           const SizedBox(
