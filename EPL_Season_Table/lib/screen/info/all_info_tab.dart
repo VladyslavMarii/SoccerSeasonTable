@@ -46,6 +46,11 @@ class _AllInfoContentState extends State<AllInfoContent> {
                 ),
               ],
             ),
+            const Divider(
+              height: 1,
+              thickness: 1,
+              color: Colors.grey,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -59,6 +64,11 @@ class _AllInfoContentState extends State<AllInfoContent> {
                   style: const TextStyle(fontSize: 20),
                 ),
               ],
+            ),
+            const Divider(
+              height: 1,
+              thickness: 1,
+              color: Colors.grey,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,6 +84,11 @@ class _AllInfoContentState extends State<AllInfoContent> {
                 ),
               ],
             ),
+            const Divider(
+              height: 1,
+              thickness: 1,
+              color: Colors.grey,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -87,6 +102,11 @@ class _AllInfoContentState extends State<AllInfoContent> {
                   style: const TextStyle(fontSize: 20),
                 ),
               ],
+            ),
+            const Divider(
+              height: 1,
+              thickness: 1,
+              color: Colors.grey,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,6 +122,11 @@ class _AllInfoContentState extends State<AllInfoContent> {
                 ),
               ],
             ),
+            const Divider(
+              height: 1,
+              thickness: 1,
+              color: Colors.grey,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -115,6 +140,11 @@ class _AllInfoContentState extends State<AllInfoContent> {
                   style: const TextStyle(fontSize: 20),
                 ),
               ],
+            ),
+            const Divider(
+              height: 1,
+              thickness: 1,
+              color: Colors.grey,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

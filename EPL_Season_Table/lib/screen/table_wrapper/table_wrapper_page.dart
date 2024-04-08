@@ -21,30 +21,49 @@ class _TableWrapperState extends State<TableWrapper> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(9.0), // Adjust the padding as needed
-          child: _currentDropdownElement == 'epl'
-              ? Image.asset('assets/epl/epl.png')
-              : Image.asset('assets/laliga/laliga-logo.png'),
-        ),
-        title: DropdownButton(
-          value: _currentDropdownElement,
-          items: dropdownItems.keys
-              .map((e) => DropdownMenuItem(
-                    value: e,
-                    child: Text(dropdownItems[e]!),
-                  ))
-              .toList(),
-          onChanged: ((value) {
-            setState(() {
-              _currentDropdownElement = value ?? 'epl';
-            });
-          }),
+        centerTitle: true,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              padding:
+                  const EdgeInsets.all(9.0), // Adjust the padding as needed
+              child: _currentDropdownElement == 'epl'
+                  ? Image.asset(
+                      'assets/epl/epl.png',
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset('assets/laliga/laliga-logo.png'),
+            ),
+            DropdownButton(
+              value: _currentDropdownElement,
+              items: dropdownItems.keys
+                  .map((e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(dropdownItems[e]!),
+                      ))
+                  .toList(),
+              onChanged: ((value) {
+                setState(() {
+                  _currentDropdownElement = value ?? 'epl';
+                });
+              }),
+            ),
+          ],
         ),
       ),
-      body: _currentDropdownElement == 'epl'
-          ? const HomeEplTableScreen()
-          : const HomeLaLigaTableScreen(),
+      body: LayoutBuilder(builder: (context, constraints) {
+        return Center(
+          child: SizedBox(
+            width: constraints.maxWidth > 500 ? 500 : double.infinity,
+            child: _currentDropdownElement == 'epl'
+                ? const HomeEplTableScreen()
+                : const HomeLaLigaTableScreen(),
+          ),
+        );
+      }),
     );
   }
 }
