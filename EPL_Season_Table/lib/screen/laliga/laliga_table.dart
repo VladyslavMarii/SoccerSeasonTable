@@ -3,6 +3,8 @@ import 'package:epl_season_table/screen/laliga/laliga_team_info_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+///[HomeLaLigaTableScreen] class that display all laliga teams with current
+///team name, logo, position, matches won, drawn, lost.
 class HomeLaLigaTableScreen extends StatefulWidget {
   const HomeLaLigaTableScreen({super.key});
 
@@ -11,7 +13,10 @@ class HomeLaLigaTableScreen extends StatefulWidget {
 }
 
 class _HomeLaLigaTableScreenState extends State<HomeLaLigaTableScreen> {
+  ///[teams] list of info for all laliga teams
   List teams = [];
+
+  ///[initState]initialization of teams
   @override
   void initState() {
     super.initState();
@@ -307,6 +312,8 @@ class _HomeLaLigaTableScreenState extends State<HomeLaLigaTableScreen> {
     );
   }
 
+  ///[fetchData] function that calls api. It sends https request to football-web-pages1.p.rapidapi.com
+  ///and stores all data that was returned from that call
   void fetchData() async {
     const String apiKey = '552295a42bmsh86a7f41465d14cbp13261cjsn5a354ed50973';
 

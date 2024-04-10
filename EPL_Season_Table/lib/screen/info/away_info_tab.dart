@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+///[AwayInfoContent] class that shows away info
+///(matches played, wins, loses, drawn, goals for/against)
+///for specific club
 class AwayInfoContent extends StatefulWidget {
+  ///[someTeam] current team for showing all info
   final Map<String, dynamic> someTeam;
 
   const AwayInfoContent({Key? key, required this.someTeam}) : super(key: key);
@@ -10,13 +14,14 @@ class AwayInfoContent extends StatefulWidget {
 }
 
 class _AwayInfoContentState extends State<AwayInfoContent> {
+  ///[_someTeam] making it easier to call current team
   late Map<String, dynamic> _someTeam;
 
+  ///[initState] initializing of _someTeam
   @override
   void initState() {
     super.initState();
     _someTeam = widget.someTeam;
-    // Add your initialization code here if needed
   }
 
   @override

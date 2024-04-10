@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+///[AllInfoContent] class that shows all info
+///(matches played, wins, loses, drawn, goals for/against/difference)
+///for specific club
 class AllInfoContent extends StatefulWidget {
+  ///[someTeam] current team for showing all info
   final Map<String, dynamic> someTeam;
 
   const AllInfoContent({Key? key, required this.someTeam}) : super(key: key);
@@ -10,13 +14,14 @@ class AllInfoContent extends StatefulWidget {
 }
 
 class _AllInfoContentState extends State<AllInfoContent> {
+  ///[_someTeam] making it easier to call current team
   late Map<String, dynamic> _someTeam;
 
+  ///[initState] initializing of _someTeam
   @override
   void initState() {
     super.initState();
     _someTeam = widget.someTeam;
-    // Perform any initialization here
   }
 
   @override

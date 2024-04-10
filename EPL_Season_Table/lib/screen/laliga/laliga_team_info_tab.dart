@@ -6,7 +6,10 @@ import '../info/all_info_tab.dart';
 import '../info/away_info_tab.dart';
 import '../info/home_info.dart';
 
+///[LaLigaTeamInfoScreen] class that we go to if choose specific team
+///we want to see more info of
 class LaLigaTeamInfoScreen extends StatefulWidget {
+  ///[laligaTeam] info about current team that we choose
   final Map<String, dynamic> laligaTeam;
 
   const LaLigaTeamInfoScreen({Key? key, required this.laligaTeam})
@@ -18,11 +21,21 @@ class LaLigaTeamInfoScreen extends StatefulWidget {
 
 class _LaLigaTeamInfoScreen extends State<LaLigaTeamInfoScreen>
     with SingleTickerProviderStateMixin {
+  ///[_laligaTeam] making it easier to call current team
   late Map<String, dynamic> _laligaTeam;
+
+  ///[_tabController] controlling which info we want to see about choosen team:
+  ///all info/away info/home info
   late TabController _tabController;
+
+  ///[teamData] additional data for curent team
   late Map<String, dynamic> teamData = {};
+
+  ///[_fetchTeamDataFuture] future data of current choosen team
   late Future<Map<String, dynamic>> _fetchTeamDataFuture;
 
+  ///[initState]initialization of eplTeam, tabcontroller, calling api and return
+  ///team data from api
   @override
   void initState() {
     super.initState();
@@ -31,6 +44,7 @@ class _LaLigaTeamInfoScreen extends State<LaLigaTeamInfoScreen>
     _fetchTeamDataFuture = fetchTeamData();
   }
 
+  ///[build]widget that displays loading circle if data is still loading from api
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -216,6 +230,8 @@ class _LaLigaTeamInfoScreen extends State<LaLigaTeamInfoScreen>
     );
   }
 
+  ///[fetchData] function that calls api. It sends https request to football-web-pages1.p.rapidapi.com
+  ///and returns all data that was returned from that call
   Future<Map<String, dynamic>> fetchTeamData() async {
     const String apiKey = '552295a42bmsh86a7f41465d14cbp13261cjsn5a354ed50973';
 

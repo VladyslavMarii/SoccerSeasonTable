@@ -2,6 +2,7 @@ import 'package:epl_season_table/screen/epl/epl_table.dart';
 import 'package:epl_season_table/screen/laliga/laliga_table.dart';
 import 'package:flutter/material.dart';
 
+///[TableWrapper] class for choosing leagua in dropdown
 class TableWrapper extends StatefulWidget {
   const TableWrapper({super.key});
 
@@ -10,11 +11,13 @@ class TableWrapper extends StatefulWidget {
 }
 
 class _TableWrapperState extends State<TableWrapper> {
+  ///[dropdownItems] Leagues map for elements in dropdown
   final Map<String, String> dropdownItems = {
     'epl': 'Premier League',
     'laliga': 'La Liga',
   };
 
+  ///[_currentDropdownElement] default league that will be show to user
   String _currentDropdownElement = 'epl';
 
   @override
