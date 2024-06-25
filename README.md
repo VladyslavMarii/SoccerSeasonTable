@@ -47,8 +47,8 @@ git clone https://github.com/VladyslavMarii/cross-platform.git
 ## Example of the Application in Web Version
 ![image](https://github.com/VladyslavMarii/SoccerSeasonTable/assets/64550027/c0955b4a-f56b-4dd9-ab43-935dac057439)
 
-To view detailed information about a team, click on the team to navigate to the next screen.
-![image](https://github.com/VladyslavMarii/SoccerSeasonTable/assets/64550027/809813e3-74ab-4458-8abc-5e2ba5e5e4f7)
+![To view detailed information about a team, click on the team to navigate to the next screen.](https://github.com/VladyslavMarii/SoccerSeasonTable/assets/64550027/809813e3-74ab-4458-8abc-5e2ba5e5e4f7)
+
 On this screen, you will find detailed information about the team "ARSENAL," and you can switch between tabs for home games, away games, and all games.
 ![image](https://github.com/VladyslavMarii/SoccerSeasonTable/assets/64550027/d4152455-3b0b-44ba-a23f-2b45b8a72d1c)
 
