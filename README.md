@@ -38,3 +38,12 @@ Details on how classes interact with each other are provided in the documentatio
 
 ## Getting Started
 1. Clone the project repository from Git:
+git clone https://github.com/VladyslavMarii/cross-platform.git
+
+2. For web mode: Select the web browser in the Flutter Device Section of your IDE and click run.
+3. For Android mode: Launch the Android emulator through Device Manager (e.g., Pixel 3a) and use the extended controls of the emulator.
+
+## Example of the Application in Web Version
+To view detailed information about a team, click on the team to navigate to the next screen. On this screen, you will find detailed information about the team "ARSENAL," and you can switch between tabs for home games, away games, and all games.
+
+If you click on the league name on the main page, you can select another league, specifically La Liga. Clicking on it will take you to a similar screen with data for La Liga teams. As with the EPL, clicking on a team will navigate to the detailed information page for that team.
